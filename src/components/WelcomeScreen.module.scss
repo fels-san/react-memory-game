@@ -17,6 +17,13 @@
   background: #efe8d8;
   position: relative;
 
+  @media (max-width: 768px) {
+    max-width: 90%;
+    padding: 0rem;
+    overflow: hidden;
+    gap: 1.5rem;
+  }
+
   &__title {
     color: #d0a77b;
     font-size: 3rem;

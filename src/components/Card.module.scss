@@ -35,4 +35,13 @@ $card-sizes: (
       border-radius: 14px;
     }
   }
+
+  @media (max-width: 768px) {
+    @each $size, $value in $card-sizes {
+      &--#{$size} {
+        width: calc($value * 0.5);
+        height: calc($value * 0.5);
+      }
+    }
+  }
 }

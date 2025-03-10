@@ -12,6 +12,13 @@
   font-weight: 600;
   font-size: 1.25rem;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+
   &__buttons {
     display: flex;
     flex-direction: row;
@@ -29,5 +36,10 @@
     color: #fdfcf8;
     width: 2rem;
     height: 2rem;
+
+    @media (max-width: 768px) {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
   }
 }
