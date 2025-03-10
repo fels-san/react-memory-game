@@ -1,7 +1,7 @@
 # Memory Game
 A cute memory game built with **React**, **Zustand**, **SCSS** and **TypeScript**. The game features cute animal images on the cards, a choice of difficulty levels, a timer and a move counter.
 
-🔗 **Live Demo**: [Link to the demo]
+🔗 **Live Demo**: https://fels-san.github.io/react-memory-game/
 
 ## Screenshots
 
