@@ -1,0 +1,33 @@
+.game-status {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  padding: 0 2em;
+
+  background: #d0a77b;
+  color: #fdfcf8;
+
+  font-weight: 600;
+  font-size: 1.25rem;
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  &__button {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  &__icon {
+    color: #fdfcf8;
+    width: 2rem;
+    height: 2rem;
+  }
+}

@@ -1,41 +1,79 @@
+import { useEffect, useRef } from "react";
+import { useGameStore } from "../store";
+
 import GlassIcon from "../ui/icons/GlassIcon";
 import PauseIcon from "../ui/icons/PauseIcon";
 
-export default function GameStatus({
-  timer,
-  movesCounter,
-  onHintClick,
-  onPauseClick,
-}: {
-  timer: number;
-  movesCounter: number;
-  onHintClick: () => void;
-  onPauseClick: () => void;
-}) {
-  function formatTime(seconds: number): string {
-    const hours = Math.floor(seconds / 3600)
-      .toString()
-      .padStart(2, "0");
-    const minutes = Math.floor((seconds % 3600) / 60)
-      .toString()
-      .padStart(2, "0");
-    const remainingSeconds = (seconds % 60).toString().padStart(2, "0");
+import classes from "./GameStatus.module.scss";
 
-    return `${hours}:${minutes}:${remainingSeconds}`;
+import { formatTime } from "../utils/utils";
+
+export default function GameStatus() {
+  const gameStatus = useGameStore((state) => state.gameStatus);
+  const incrementTimer = useGameStore((state) => state.incrementTimer);
+  const cards = useGameStore((state) => state.cards);
+  const movesCounter = useGameStore((state) => state.movesCounter);
+  const timer = useGameStore((state) => state.timer);
+  const flipCard = useGameStore((state) => state.flipCard);
+  const togglePause = useGameStore((state) => state.togglePause);
+  const setAwaitingEndOfMove = useGameStore(
+    (state) => state.setAwaitingEndOfMove
+  );
+
+  const intervalRef = useRef<number>(null);
+
+  useEffect(() => {
+    if (gameStatus !== "playing") return;
+
+    intervalRef.current = setInterval(() => {
+      incrementTimer();
+    }, 1000);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [gameStatus, incrementTimer]);
+
+  function handleShowHint() {
+    const closedCards = cards.filter((card) => !card.isFlipped);
+    const randomCard =
+      closedCards[Math.floor(Math.random() * closedCards.length)];
+
+    setAwaitingEndOfMove(true);
+    flipCard(randomCard.id);
+
+    setTimeout(() => {
+      flipCard(randomCard.id);
+      setAwaitingEndOfMove(false);
+    }, 1000);
+  }
+
+  function handlePauseToggle() {
+    togglePause();
   }
 
   return (
-    <header className="game-status">
-      <div className="buttons">
-        <button onClick={onPauseClick}>
-          <PauseIcon />
+    <header className={classes["game-status"]}>
+      <div className={classes["game-status__buttons"]}>
+        <button
+          className={classes["game-status__button"]}
+          onClick={handlePauseToggle}
+        >
+          <PauseIcon className={classes["game-status__icon"]} />
         </button>
-        <button onClick={onHintClick}>
-          <GlassIcon />
+        <button
+          className={classes["game-status__button"]}
+          onClick={handleShowHint}
+        >
+          <GlassIcon className={classes["game-status__icon"]} />
         </button>
       </div>
-      <p className="game-status__score">Ходы: {movesCounter}</p>
-      <p className="game-status__timer">Время: {formatTime(timer)}</p>
+      <p className={classes["game-status__score"]}>Ходы: {movesCounter}</p>
+      <p className={classes["game-status__timer"]}>
+        Время: {formatTime(timer)}
+      </p>
     </header>
   );
 }

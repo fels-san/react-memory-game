@@ -1,0 +1,35 @@
+.menu-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  max-width: 50.5rem;
+  min-height: 80vh;
+
+  margin: 3rem auto;
+  padding-bottom: 3rem;
+
+  border-radius: 20px;
+  border: 4px solid #d0a77b;
+
+  background: #efe8d8;
+  position: relative;
+
+  &__title {
+    color: #d0a77b;
+    font-size: 3rem;
+    margin-bottom: 0;
+  }
+
+  &__button {
+    cursor: pointer;
+    border: none;
+    background: #d0a77b;
+    color: #f0e9d9;
+    width: 65%;
+    padding: 2rem;
+    font-size: 2rem;
+  }
+}

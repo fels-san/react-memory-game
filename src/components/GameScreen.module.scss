@@ -1,0 +1,41 @@
+.memory-game {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+
+  max-width: 50.5rem;
+
+  margin: 3rem auto;
+  padding: 2rem;
+  padding-bottom: 3rem;
+
+  border-radius: 20px;
+  border: 4px solid #d0a77b;
+
+  background: #efe8d8;
+  position: relative;
+
+  &__flower {
+    position: absolute;
+    z-index: 10;
+
+    &--pink {
+      top: 86%;
+      left: -6%;
+    }
+  }
+}
+
+.game-modal__button {
+  display: block;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  background: none;
+  border: 2px solid white;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s, color 0.2s;
+  box-shadow: 0 0 8px rgba(255, 187, 0, 0.4);
+}

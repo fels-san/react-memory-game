@@ -1,17 +1,16 @@
-import { CardType } from "../types/types";
+import { useGameStore } from "../store";
+
+import classes from "./GameBoard.module.scss";
+
 import Card from "./Card";
 
-export default function GameBoard({
-  cards,
-  onSelectCard,
-}: {
-  cards: CardType[];
-  onSelectCard: (cardId: number) => void;
-}) {
+export default function GameBoard() {
+  const cards = useGameStore((state) => state.cards);
+
   return (
-    <section className="game-board">
+    <section className={classes["game-board"]}>
       {cards.map((card, index) => (
-        <Card key={index} card={card} onClick={onSelectCard} />
+        <Card key={index} card={card} />
       ))}
     </section>
   );
