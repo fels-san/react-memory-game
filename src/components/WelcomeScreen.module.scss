@@ -18,8 +18,9 @@
   position: relative;
 
   @media (max-width: 768px) {
+    min-height: 70vh;
     max-width: 90%;
-    padding: 0rem;
+    padding: 1rem;
     overflow: hidden;
     gap: 1.5rem;
   }
@@ -28,6 +29,10 @@
     color: #d0a77b;
     font-size: 3rem;
     margin-bottom: 0;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
   }
 
   &__start-button {
@@ -38,5 +43,10 @@
     width: 65%;
     padding: 2rem;
     font-size: 2rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+      padding: 1rem;
+    }
   }
 }
